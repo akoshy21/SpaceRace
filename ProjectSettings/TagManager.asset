@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bound
   - Asteroid
+  - shield
   layers:
   - Default
   - TransparentFX

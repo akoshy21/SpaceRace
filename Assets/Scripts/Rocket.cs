@@ -7,6 +7,8 @@ public class Rocket : MonoBehaviour
     public bool rocketOne;
     public float speed;
 
+    public GameObject leftShield, rightShield;
+
     private void Update()
     {
         if (rocketOne)
@@ -20,7 +22,16 @@ public class Rocket : MonoBehaviour
             {
                 this.transform.position += new Vector3(0, -speed, 0);
                 Debug.Log("Down");
+            }
 
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                leftShield.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                rightShield.SetActive(true);
             }
         }
         else {
