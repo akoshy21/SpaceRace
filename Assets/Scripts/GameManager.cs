@@ -9,7 +9,9 @@ public class GameManager : MonoBehaviour
 
     public float timer, currentTime;
 
-    public GameObject rocketPrefab;
+    public GameObject rocketPrefab, asteroidPrefab;
+
+    public float spawnFrequency;
 
     public GameObject rocketOne, rocketTwo;
     public Text scoreOneText, scoreTwoText;
@@ -18,6 +20,12 @@ public class GameManager : MonoBehaviour
     public Image fillBar;
 
     Vector3 posOne, posTwo;
+
+    public float xLeft, xRight, yMax, yMin;
+
+    public GameObject gameOver;
+
+    public bool end = false;
 
     private void Awake()
     {
@@ -35,10 +43,28 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < 20; i++)
+        {
+            float leftRight = Random.Range(0, 2);
+            GameObject ast;
+
+            if (leftRight <= 1)
+            {
+                ast = Instantiate(asteroidPrefab, new Vector3(Random.Range(xLeft, xRight), Random.Range(yMin, yMax), 0), Quaternion.identity);
+                ast.GetComponent<Asteroid>().left = false;
+            }
+            else
+            {
+                ast = Instantiate(asteroidPrefab, new Vector3(Random.Range(xLeft, xRight), Random.Range(yMin, yMax), 0), Quaternion.identity);
+                ast.GetComponent<Asteroid>().left = true;
+            }
+        }
+
         posOne = rocketOne.transform.position;
         posTwo = rocketTwo.transform.position;
 
         currentTime = timer;
+        InvokeRepeating("SpawnAsteroids", 0f, spawnFrequency);
         InvokeRepeating("UpdateTimerAndFill", 0f, 1f);
     }
 
@@ -47,6 +73,34 @@ public class GameManager : MonoBehaviour
     {
         scoreOneText.text = scoreOne.ToString();
         scoreTwoText.text = scoreTwo.ToString();
+
+        if (currentTime == 0)
+        {
+            rocketOne.GetComponent<Rocket>().enabled = false;
+            rocketTwo.GetComponent<Rocket>().enabled = false;
+
+            GameObject[] asteroids = GameObject.FindGameObjectsWithTag("Asteroid");
+            for (int i = 0; i < asteroids.Length; i++)
+            {
+                asteroids[i].GetComponent<Asteroid>().enabled = false;
+            }
+            end = true;
+
+            if (scoreOne > scoreTwo)
+            {
+                gameOver.transform.GetChild(0).gameObject.GetComponent<Text>().text = "PLAYER ONE WINS";
+            }
+            else if (scoreTwo > scoreOne)
+            {
+                gameOver.transform.GetChild(0).gameObject.GetComponent<Text>().text = "PLAYER TWO WINS";
+            }
+            else if (scoreOne == scoreTwo)
+            {
+                gameOver.transform.GetChild(0).gameObject.GetComponent<Text>().text = "ITS A TIE";
+            }
+
+            gameOver.SetActive(true);
+        }
     }
 
     void UpdateTimerAndFill()
@@ -54,6 +108,26 @@ public class GameManager : MonoBehaviour
         currentTime--;
 
         fillBar.fillAmount = currentTime / timer;
+    }
+
+    void SpawnAsteroids()
+    {
+        if (!end)
+        {
+            float leftRight = Random.Range(0, 3);
+            GameObject ast;
+
+            if (leftRight <= 1)
+            {
+                ast = Instantiate(asteroidPrefab, new Vector3(xLeft, Random.Range(yMin, yMax), 0), Quaternion.identity);
+                ast.GetComponent<Asteroid>().left = false;
+            }
+            else
+            {
+                ast = Instantiate(asteroidPrefab, new Vector3(xRight, Random.Range(yMin, yMax), 0), Quaternion.identity);
+                ast.GetComponent<Asteroid>().left = true;
+            }
+        }
     }
 
     public IEnumerator PlayerOneScore()
@@ -71,14 +145,16 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator PlayerTwoScore()
     {
-        scoreOne++;
+        scoreTwo++;
         yield return new WaitForSeconds(1);
-        rocketOne = Instantiate(rocketPrefab, posTwo, Quaternion.identity);
+        rocketTwo = Instantiate(rocketPrefab, posTwo, Quaternion.identity);
+        rocketTwo.GetComponent<Rocket>().rocketOne = false;
     }
 
     public IEnumerator PlayerTwoHit()
     {
         yield return new WaitForSeconds(1);
         rocketTwo = Instantiate(rocketPrefab, posTwo, Quaternion.identity);
+        rocketTwo.GetComponent<Rocket>().rocketOne = false;
     }
 }
