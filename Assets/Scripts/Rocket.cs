@@ -43,6 +43,15 @@ public class Rocket : MonoBehaviour
             {
                 this.transform.position += new Vector3(0, -speed, 0);
             }
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                leftShield.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                rightShield.SetActive(true);
+            }
         }
     }
 }
