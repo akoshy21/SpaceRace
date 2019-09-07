@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &188710273
 Transform:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8640a15ce72a4724986c6499281e2bb9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188710272}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768dcea22e41b6e4492b705bb160e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 4
+  initTime: 2
 --- !u!50 &188710277
 Rigidbody2D:
   serializedVersion: 4
@@ -161,7 +163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1203804642
 Transform:
   m_ObjectHideFlags: 0
@@ -215,7 +217,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8640a15ce72a4724986c6499281e2bb9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -232,7 +234,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203804641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -263,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768dcea22e41b6e4492b705bb160e1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldown: 4
+  initTime: 2
 --- !u!50 &1203804646
 Rigidbody2D:
   serializedVersion: 4
@@ -429,7 +433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a2b13fb76a16843864afbdb6c264b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocketOne: 0
+  rocketOne: 1
   speed: 0.03
   leftShield: {fileID: 188710272}
   rightShield: {fileID: 1203804641}
+  timestampL: 2
+  timestampR: 2
+  cooldownDelay: 2

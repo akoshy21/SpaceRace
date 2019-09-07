@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    public bool wait;
+    public float cooldown, initTime;
+
+    bool firstInit = true;
 
     private void Update()
     {
-        if (wait)
+        if (this.GetComponent<BoxCollider2D>().enabled == true && firstInit == true)
         {
-            this.GetComponent<BoxCollider2D>().enabled = false;
+            initTime = Time.time + cooldown;
+            firstInit = false;
         }
+
+        if (firstInit == false && initTime <= Time.time)
+        {
+            Debug.Log("OOF");
+            this.GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 85);
+            firstInit = true;
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
