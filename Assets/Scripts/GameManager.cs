@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public float timer, currentTime;
 
-    public GameObject rocketPrefab, asteroidPrefab;
+    public GameObject rocketPrefab, asteroidPrefab, blackHolePrefab;
 
     public float spawnFrequency;
 
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 20; i++)
         {
-            float leftRight = Random.Range(0, 2);
+            float leftRight = Random.Range(0, 3);
             GameObject ast;
 
             if (leftRight <= 1)
@@ -112,20 +112,38 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroids()
     {
+        float spawner = Random.Range(0, 3);
+
         if (!end)
         {
             float leftRight = Random.Range(0, 3);
             GameObject ast;
 
-            if (leftRight <= 1)
+            if (leftRight <= 1f)
             {
-                ast = Instantiate(asteroidPrefab, new Vector3(xLeft, Random.Range(yMin, yMax), 0), Quaternion.identity);
-                ast.GetComponent<Asteroid>().left = false;
+                if (spawner <= 1f)
+                {
+                    ast = Instantiate(asteroidPrefab, new Vector3(xLeft, Random.Range(yMin, yMax), 0), Quaternion.identity);
+                    ast.GetComponent<Asteroid>().left = false;
+                }
+                else
+                {
+                    ast = Instantiate(blackHolePrefab, new Vector3(xLeft, Random.Range(yMin, yMax), 0), Quaternion.identity);
+                    ast.GetComponent<BlackHole>().direction = 1;
+                }
             }
             else
             {
+                if(spawner <= 1f)
+                { 
                 ast = Instantiate(asteroidPrefab, new Vector3(xRight, Random.Range(yMin, yMax), 0), Quaternion.identity);
                 ast.GetComponent<Asteroid>().left = true;
+                }
+                else
+                {
+                ast = Instantiate(blackHolePrefab, new Vector3(xRight, Random.Range(yMin, yMax), 0), Quaternion.identity);
+                ast.GetComponent<BlackHole>().direction = -1;
+                }
             }
         }
     }
