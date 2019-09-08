@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1438,11 +1438,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1783768743897269610, guid: 135aa66a258db744dbe52122853e3315,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135aa66a258db744dbe52122853e3315, type: 3}
 --- !u!1001 &2264557284474571763
@@ -1460,12 +1455,12 @@ PrefabInstance:
     - target: {fileID: 2264557284950784592, guid: 78b519cccea06a142a7cfe5e470c64de,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.8512
+      value: -0.821
       objectReference: {fileID: 0}
     - target: {fileID: 2264557284950784592, guid: 78b519cccea06a142a7cfe5e470c64de,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1679
+      value: -1.943
       objectReference: {fileID: 0}
     - target: {fileID: 2264557284950784592, guid: 78b519cccea06a142a7cfe5e470c64de,
         type: 3}
@@ -1511,6 +1506,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264557284950784594, guid: 78b519cccea06a142a7cfe5e470c64de,
+        type: 3}
+      propertyPath: speed
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2264557284950784594, guid: 78b519cccea06a142a7cfe5e470c64de,
+        type: 3}
+      propertyPath: slowMod
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78b519cccea06a142a7cfe5e470c64de, type: 3}
@@ -1580,6 +1585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589954864561345577, guid: 93aea3876dafcb84eb0c59d9227d07a8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93aea3876dafcb84eb0c59d9227d07a8, type: 3}

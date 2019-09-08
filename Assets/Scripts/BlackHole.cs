@@ -14,7 +14,7 @@ public class BlackHole : MonoBehaviour
         
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (direction == -1)
         {

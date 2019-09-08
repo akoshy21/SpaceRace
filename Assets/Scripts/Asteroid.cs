@@ -8,7 +8,7 @@ public class Asteroid : MonoBehaviour
     public float speed;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (left)
         {

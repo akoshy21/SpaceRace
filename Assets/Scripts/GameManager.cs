@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnAsteroids()
     {
-        float spawner = Random.Range(0, 3);
+        float spawner = Random.Range(0, 15);
 
         if (!end)
         {
@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
 
             if (leftRight <= 1f)
             {
-                if (spawner <= 1f)
+                if (spawner >= 1f)
                 {
                     ast = Instantiate(asteroidPrefab, new Vector3(xLeft, Random.Range(yMin, yMax), 0), Quaternion.identity);
                     ast.GetComponent<Asteroid>().left = false;
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                if(spawner <= 1f)
+                if(spawner >= 1f)
                 { 
                 ast = Instantiate(asteroidPrefab, new Vector3(xRight, Random.Range(yMin, yMax), 0), Quaternion.identity);
                 ast.GetComponent<Asteroid>().left = true;

@@ -5,8 +5,17 @@ using UnityEngine;
 public class Shield : MonoBehaviour
 {
     public float cooldown, initTime;
+    Color tint;
+
 
     bool firstInit = true;
+
+    private void Start()
+    {
+        Color tint = GetComponent<SpriteRenderer>().color;
+        tint.a = 0.25f;
+        this.GetComponent<SpriteRenderer>().color = tint;
+    }
 
     private void Update()
     {
@@ -20,7 +29,9 @@ public class Shield : MonoBehaviour
         {
             Debug.Log("OOF");
             this.GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 85);
+            
+            this.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 0.25f) ;
+            Debug.Log(GetComponent<SpriteRenderer>().color);
             firstInit = true;
         }
 
