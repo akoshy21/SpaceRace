@@ -33,6 +33,8 @@ public class BlackHole : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             collision.gameObject.GetComponent<Rocket>().speed *= slowMod;
+            collision.gameObject.GetComponent<Rocket>().timestampL += 3;
+            collision.gameObject.GetComponent<Rocket>().timestampR += 3;  
         }
         else if (collision.gameObject.tag.Equals("shield"))
         {
