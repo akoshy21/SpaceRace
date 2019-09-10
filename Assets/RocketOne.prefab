@@ -439,4 +439,4 @@ MonoBehaviour:
   rightShield: {fileID: 1203804641}
   timestampL: 0
   timestampR: 0
-  cooldownDelay: 5
+  cooldownDelay: 3

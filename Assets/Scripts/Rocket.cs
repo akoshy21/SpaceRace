@@ -16,6 +16,7 @@ public class Rocket : MonoBehaviour
     private void Start()
     {
         shield = new Color(255, 255, 255, 255);
+      
     }
 
     private void Update()

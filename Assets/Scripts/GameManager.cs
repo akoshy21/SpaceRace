@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager gm;
 
     public float timer, currentTime;
-
+    
     public GameObject rocketPrefab, asteroidPrefab, blackHolePrefab;
 
     public float spawnFrequency;
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Text scoreOneText, scoreTwoText;
     public int scoreOne, scoreTwo;
 
-    public Image fillBar;
+    public Image fillBar, P1L, P1R, P2L, P2R;
 
     Vector3 posOne, posTwo;
 
@@ -108,11 +108,17 @@ public class GameManager : MonoBehaviour
         currentTime--;
 
         fillBar.fillAmount = currentTime / timer;
+
+        P1R.fillAmount = 1- ((rocketOne.GetComponent<Rocket>().timestampR - Time.time) / rocketOne.GetComponent<Rocket>().cooldownDelay);
+        P1L.fillAmount = 1- ( (rocketOne.GetComponent<Rocket>().timestampL - Time.time) / rocketOne.GetComponent<Rocket>().cooldownDelay);
+
+        P2R.fillAmount = 1- ((rocketTwo.GetComponent<Rocket>().timestampR - Time.time) / rocketTwo.GetComponent<Rocket>().cooldownDelay);
+        P2L.fillAmount = 1-((rocketTwo.GetComponent<Rocket>().timestampL - Time.time) / rocketTwo.GetComponent<Rocket>().cooldownDelay);
     }
 
     void SpawnAsteroids()
     {
-        float spawner = Random.Range(0, 15);
+        float spawner = Random.Range(0, 18);
 
         if (!end)
         {

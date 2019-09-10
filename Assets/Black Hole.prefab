@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  speed: 0.02
+  speed: 0.01
   slowMod: 0.3
 --- !u!61 &497217953
 BoxCollider2D:
